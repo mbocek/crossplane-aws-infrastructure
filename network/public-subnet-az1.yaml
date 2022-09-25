@@ -1,0 +1,22 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: public-subnet-az1
+  labels:
+    name: public-subnet-az1
+spec:
+  forProvider:
+    region: eu-central-1
+    availabilityZone: eu-central-1a
+    vpcIdSelector:
+      matchLabels:
+        name: vpc
+    cidrBlock: 10.200.192.0/24
+    mapPublicIPOnLaunch: true
+    tags:
+      - key: Name
+        value: public-subnet-az1
+      - key: kubernetes.io/role/elb
+        value: "1"
+  providerConfigRef:
+    name: aws-provider-config

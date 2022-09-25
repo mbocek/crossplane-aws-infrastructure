@@ -1,0 +1,27 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: RouteTable
+metadata:
+  name: private-routetable
+  labels:
+    name: private-routetable
+spec:
+  forProvider:
+    region: eu-central-1
+    vpcIdRef:
+      name: vpc
+    routes:
+      - destinationCidrBlock: 0.0.0.0/0
+        natGatewayIdRef:
+          name: nat-gateway
+    associations:
+      - subnetIdRef:
+          name: private-subnet-az1
+      - subnetIdRef:
+          name: private-subnet-az2
+      - subnetIdRef:
+          name: private-subnet-az3
+    tags:
+      - key: Name
+        value: private-routetable
+  providerConfigRef:
+    name: aws-provider-config

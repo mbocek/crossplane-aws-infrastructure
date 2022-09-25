@@ -1,0 +1,13 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Address
+metadata:
+  name: natgateway-eip
+spec:
+  forProvider:
+    region: eu-central-1
+    domain: vpc
+    tags:
+      - key: Name
+        value: natgateway-eip
+  providerConfigRef:
+    name: aws-provider-config

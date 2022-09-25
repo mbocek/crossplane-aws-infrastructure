@@ -1,0 +1,14 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: internet-gateway
+spec:
+  forProvider:
+    region: eu-central-1
+    vpcIdRef:
+      name: vpc
+    tags:
+      - key: Name
+        value: internet-gateway
+  providerConfigRef:
+    name: aws-provider-config

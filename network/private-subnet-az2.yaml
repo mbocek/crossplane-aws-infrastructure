@@ -1,0 +1,19 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: private-subnet-az2
+  labels:
+    name: private-subnet-az2
+spec:
+  forProvider:
+    region: eu-central-1
+    availabilityZone: eu-central-1b
+    vpcIdSelector:
+      matchLabels:
+        name: vpc
+    cidrBlock: 10.200.64.0/18
+    tags:
+      - key: Name
+        value: private-subnet-az2
+  providerConfigRef:
+    name: aws-provider-config
